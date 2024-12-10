@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Processing</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Audio Processing</h1>
+        <form action="/upload" method="post" enctype="multipart/form-data" class="mt-4 p-4" style="border-radius: 15px; background-color: #E3EBFF;">
+            <div class="form-group">
+            <label for="file">Upload Audio File</label>
+            <input type="file" class="form-control-file" id="file" name="file" required>
+            </div>
+            <button type="submit" class="btn" style="background-color: #4392F1; color: black;">Upload</button>
+        </form>
+        <style>
+            .btn:hover {
+                background-color: #4392F1;
+                color: #051014;
+            }
+        </style>
+        {% if filenames %}
+        <div class="mt-5">
+            <h2>Processed Audio Files</h2>
+            <ul class="list-group">
+                {% for filename in filenames %}
+                <li class="list-group-item">
+                    <a href="{{ url_for('output_file', filename=filename) }}" target="_blank" class="btn btn-primary" style="background-color: #050517; color: #D3D5D7; border: none; border-radius: 5px;">{{ filename }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
